@@ -1,0 +1,23 @@
+Site                                               : Riverhead, LI, NY (40.92N, -72.66W)
+Turbine                                            : Energie PGE 20/35 (36.4 kW, 19.2 m rotor, 80 m hub)
+Number of turbines                                 : 138
+Installed capacity (kW)                            : 5023.2
+Land area (acres, 5Dx3D spacing)                   : 188.6
+Annual energy per turbine (kWh)                    : 151263.0
+Annual array energy (kWh)                          : 20874275.0
+Capacity factor                                    : 0.474
+Mean wind speed @ 9.1 m (m/s)                      : 3.58
+Mean wind speed @ 50 m (m/s)                       : 6.86
+Mean wind speed @ 80 m (m/s)                       : 7.7
+Wind power density @ 9.1 m (kWh/m^2/yr)            : 363.2
+Wind power density @ 50 m (kWh/m^2/yr)             : 2141.1
+CAPEX gross ($)                                    : 30,139,200
+ITC credit ($)                                     : 9,041,760
+CAPEX net of incentives ($)                        : 21,097,440
+Annual O&M ($/yr)                                  : 251,160
+Annual revenue ($/yr, net metered)                 : 3,757,369
+Simple payback (yr)                                : 6.0
+NPV @ 6% over 25 yr ($)                            : 23,723,685
+LCOE ($/kWh)                                       : 0.091
+Annual CO2 avoided (tonnes/yr)                     : 5844.8
+Lifetime CO2 avoided (25 yr, tonnes)               : 146120.0
