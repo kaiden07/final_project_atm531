@@ -1,12 +1,12 @@
-Site                                               : Long Island, NY (40.80N, -73.25W; site 2327256)
+Site                                               : Long Island, NY (40.24N, -73.51W; site 2325452)
 Data window                                        : 2015-2023 (9-year hourly average, 100 m)
 Turbine                                            : GE 2.8-127 (2.8 MW, 127 m rotor, 100 m hub)
 Target annual demand (GWh)                         : 20,000
-Number of turbines                                 : 2475
-Installed capacity (MW)                            : 6,930.0
-Farm area, 5D x 3D spacing (km^2)                  : 598.79
-Annual energy per turbine (MWh)                    : 8082.6
-Annual array energy (GWh)                          : 20004.4
-Annual capacity factor                             : 0.3295
-Mean wind speed @ 100 m (m/s)                      : 6.93
-Wind power density @ 100 m (kWh/m^2/yr)            : 2010.6
+Number of turbines                                 : 1341
+Installed capacity (MW)                            : 3,754.8
+Farm area, 5D x 3D spacing (km^2)                  : 324.43
+Annual energy per turbine (MWh)                    : 14914.9
+Annual array energy (GWh)                          : 20000.8
+Annual capacity factor                             : 0.6081
+Mean wind speed @ 100 m (m/s)                      : 8.7
+Wind power density @ 100 m (kWh/m^2/yr)            : 4019.0

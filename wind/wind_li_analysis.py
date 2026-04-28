@@ -1,7 +1,7 @@
 """
 Long Island utility-scale wind feasibility — GE 2.8-127, 100 m hub, 2050 scenario.
 
-Data: 9 years of hourly wind speeds at 100 m (site 2327256, 40.80N -73.25W),
+Data: 9 years of hourly wind speeds at 100 m (site 2325452, 40.24N -73.51W),
 averaged across years to a TMY-style 8760-hour profile.
 
 Outputs (all under wind/):
@@ -63,7 +63,7 @@ def wpd_kwh_per_m2(v):
     return 0.5 * RHO * v**3 / 1000.0
 
 # --- Load multi-year data and average to 8760 ---------------------------------
-files = sorted(glob.glob(str(DATA_SRC / "2327256_*.csv")))
+files = sorted(glob.glob(str(DATA_SRC / "2325452_*.csv")))
 if not files:
     raise SystemExit(f"No 100 m wind data files found in {DATA_SRC}")
 
@@ -149,7 +149,7 @@ monthly_energy.to_csv(OUT / "monthly_energy.csv")
 annual_res.to_csv(OUT / "annual_wind_resource.csv", header=["value"])
 
 summary = {
-    "Site": "Long Island, NY (40.80N, -73.25W; site 2327256)",
+    "Site": "Long Island, NY (40.24N, -73.51W; site 2325452)",
     "Data window": f"{yr_min}-{yr_max} ({n_years}-year hourly average, 100 m)",
     "Turbine": "GE 2.8-127 (2.8 MW, 127 m rotor, 100 m hub)",
     "Target annual demand (GWh)": f"{TARGET_GWH:,.0f}",
@@ -228,7 +228,7 @@ fig.savefig(OUT / "diurnal_cf.png", dpi=130)
 plt.close(fig)
 
 # --- Console summary ----------------------------------------------------------
-print(f"Site: 2327256 (40.80N, -73.25W), {n_years}-year average ({yr_min}-{yr_max})")
+print(f"Site: 2325452 (40.24N, -73.51W), {n_years}-year average ({yr_min}-{yr_max})")
 print(f"Turbine: GE 2.8-127 @ {HUB_H:.0f} m hub")
 print(f"Wrote {len(out_df)} rows to {out_csv}")
 print()
