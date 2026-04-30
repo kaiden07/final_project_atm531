@@ -108,7 +108,7 @@ diurnal_cf = tmy.groupby("Hour")["cf"].mean()
 annual_per_turbine_kWh = tmy["e_turbine_kWh"].sum()
 
 # --- Sizing for 2050 target demand --------------------------------------------
-TARGET_GWH = 20000.0
+TARGET_GWH = 38466.7 * 0.65  # 65 % of 2050 annual load projection (≈ 25,003 GWh)
 target_mwh = TARGET_GWH * 1000.0
 mw_required = target_mwh / (8760.0 * annual_cf)
 n_turbines = int(np.ceil(mw_required * 1000.0 / RATED_KW))
