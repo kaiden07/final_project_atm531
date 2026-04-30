@@ -1,0 +1,16 @@
+Minimum turbines to zero deficit — threshold analysis
+======================================================
+Turbine model      : GE 2.8-127, 2.8 MW AC
+Maximum cap        : 5000 turbines = 14,000 MW
+Current fleet      : 1677 turbines = 4,696 MW (65% demand target)
+Hours with cf = 0  : 1  (wind cannot cover load these hours regardless of fleet size)
+
+Threshold results:
+  100% hours deficit-free : NOT achievable within 5000-turbine cap (at cap: 80.91%)
+  90% hours deficit-free : NOT achievable within 5000-turbine cap (at cap: 80.91%)
+  80% hours deficit-free : 4,810 turbines = 13,468 MW  (actual 80.00%)
+  70% hours deficit-free : 3,629 turbines = 10,161 MW  (actual 69.99%)
+
+At maximum cap (5000 turbines, 14,000 MW):
+  80.91% of hours are deficit-free
+  19.09% of hours still have a shortfall

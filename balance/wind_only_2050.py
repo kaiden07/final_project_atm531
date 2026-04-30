@@ -119,6 +119,24 @@ fig.tight_layout()
 fig.savefig(OUT / "daily_deficit_2050.png", dpi=130)
 plt.close(fig)
 
+# Hourly deficit CSV and plot
+hourly[["datetime", "deficit_MW"]].to_csv(OUT / "hourly_deficit_2050.csv", index=False)
+
+fig, ax = plt.subplots(figsize=(14, 4.5))
+pos = hourly["deficit_MW"].clip(lower=0)
+neg = hourly["deficit_MW"].clip(upper=0)
+ax.fill_between(hourly["datetime"], pos, color="#c0392b", alpha=0.7, label="Shortfall")
+ax.fill_between(hourly["datetime"], neg, color="#2980b9", alpha=0.7, label="Surplus")
+ax.axhline(0, color="black", lw=0.6)
+ax.set_xlabel("Date (2050)")
+ax.set_ylabel("Deficit (MW)")
+ax.set_title(f"2050 wind-only hourly deficit — {installed_mw:,.0f} MW fleet")
+ax.legend(loc="upper right")
+ax.grid(True, alpha=0.2, axis="y")
+fig.tight_layout()
+fig.savefig(OUT / "hourly_deficit_2050.png", dpi=130)
+plt.close(fig)
+
 # Summary
 load_TWh = hourly["load_MW"].sum() / 1e6
 wind_TWh = hourly["wind_MW"].sum() / 1e6

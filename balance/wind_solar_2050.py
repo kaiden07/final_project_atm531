@@ -101,13 +101,32 @@ colors = np.where(daily["deficit_MW"] >= 0, "#c0392b", "#2980b9")
 fig, ax = plt.subplots(figsize=(12, 4.5))
 ax.bar(daily["date"], daily["deficit_MW"], color=colors, width=1.0)
 ax.axhline(0, color="black", lw=0.6)
-ax.set_xlabel("Date (2050)")
+ax.set_xlabel("Date (2050)")  # noqa — keep for clarity
 ax.set_ylabel("Daily mean deficit (MW)")
 ax.set_title("2050 wind + solar — daily mean deficit (red = shortfall, blue = surplus)")
 ax.yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f"{x:,.0f}"))
 ax.grid(True, alpha=0.3, axis="y")
 fig.tight_layout()
 fig.savefig(OUT / "daily_deficit_2050.png", dpi=130)
+plt.close(fig)
+
+# --- Hourly deficit CSV and plot ----------------------------------------------
+wind_bal[["datetime", "deficit_MW"]].to_csv(OUT / "hourly_deficit_2050.csv", index=False)
+
+fig, ax = plt.subplots(figsize=(14, 4.5))
+pos = wind_bal["deficit_MW"].clip(lower=0)
+neg = wind_bal["deficit_MW"].clip(upper=0)
+ax.fill_between(wind_bal["datetime"], pos, color="#c0392b", alpha=0.7, label="Shortfall")
+ax.fill_between(wind_bal["datetime"], neg, color="#2980b9", alpha=0.7, label="Surplus")
+ax.axhline(0, color="black", lw=0.6)
+ax.set_xlabel("Date (2050)")
+ax.set_ylabel("Deficit (MW)")
+ax.set_title("2050 wind + solar hourly deficit")
+ax.yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f"{x:,.0f}"))
+ax.legend(loc="upper right")
+ax.grid(True, alpha=0.2, axis="y")
+fig.tight_layout()
+fig.savefig(OUT / "hourly_deficit_2050.png", dpi=130)
 plt.close(fig)
 
 # --- Summary ------------------------------------------------------------------
