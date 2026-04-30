@@ -1,12 +1,12 @@
 Scenario              : 2050 wind-only (target 25,003 GWh/yr from wind)
-Wind fleet            : 1677 x GE 2.8-127 = 4,695.6 MW AC
-Annual wind CF        : 0.6081 (60.81%)
+Wind fleet            : 352 x SG 14-222 DD = 5,280.0 MW AC
+Annual wind CF        : 0.5415 (54.15%)
 
 Annual load           : 38.47 TWh
-Annual wind energy    : 25.01 TWh (65.0% of load)
-Energy deficit (sum>0): 14.41 TWh
-Energy surplus (sum<0): 0.95 TWh
-Hours with deficit    : 7,194 / 8760 (82.1%)
-Hours with surplus    : 1,566 / 8760 (17.9%)
-Peak hourly deficit   : 6,263 MW
-Peak hourly surplus   : 1,966 MW
+Annual wind energy    : 25.05 TWh (65.1% of load)
+Energy deficit (sum>0): 14.68 TWh
+Energy surplus (sum<0): 1.26 TWh
+Hours with deficit    : 7,105 / 8760 (81.1%)
+Hours with surplus    : 1,655 / 8760 (18.9%)
+Peak hourly deficit   : 6,278 MW
+Peak hourly surplus   : 2,518 MW

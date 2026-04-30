@@ -20,9 +20,8 @@ ROOT = Path(__file__).parent.parent
 OUT = ROOT / "balance" / "2050" / "wind_max"
 OUT.mkdir(parents=True, exist_ok=True)
 
-RATED_MW = 2.8
+RATED_MW = 15.0  # SG 14-222 DD Power Boost
 MAX_TURBINES = 5000
-CURRENT_TURBINES = 1677  # 65% demand target fleet
 
 bal = pd.read_csv(
     ROOT / "balance" / "2050" / "wind_only" / "hourly_balance_2050.csv",
@@ -30,8 +29,13 @@ bal = pd.read_csv(
 )
 assert len(bal) == 8760
 
-# Recover normalized CF from current fleet
-bal["cf"] = bal["wind_MW"] / (CURRENT_TURBINES * RATED_MW)
+# Read CF directly from the normalized series (no need to know turbine count)
+cf_ser = pd.read_csv(ROOT / "wind" / "data" / "wind_li_cf_hourly.csv")
+bal["cf"] = cf_ser["cf"].values
+
+# Derive current fleet size from installed capacity implied by the balance
+installed_mw = (bal.loc[bal["cf"] > 0, "wind_MW"] / bal.loc[bal["cf"] > 0, "cf"]).median()
+CURRENT_TURBINES = round(installed_mw / RATED_MW)
 
 # Hours requiring N turbines to zero deficit = ceil(load / (cf * RATED_MW))
 bal["turbines_needed"] = np.where(
@@ -79,7 +83,7 @@ for pct, res in results.items():
                    label=f"{pct}% → {res['turbines']:,} turbines")
 ax.axhline(at_cap_pct, color="#d7191c", ls="--", lw=1,
            label=f"Max cap ({MAX_TURBINES}) → {at_cap_pct:.1f}%")
-ax.set_xlabel("Number of GE 2.8-127 turbines")
+ax.set_xlabel("Number of SG 14-222 DD turbines")
 ax.set_ylabel("Hours with zero deficit (%)")
 ax.set_title("Wind-only deficit-free hour coverage vs fleet size (2050)")
 ax.set_xlim(0, MAX_TURBINES)
@@ -127,7 +131,7 @@ pct_cap = hourly_deficit_plot(MAX_TURBINES, "5000-turbine cap")
 lines = [
     "Minimum turbines to zero deficit — threshold analysis",
     "======================================================",
-    f"Turbine model      : GE 2.8-127, {RATED_MW} MW AC",
+    f"Turbine model      : SG 14-222 DD (Power Boost), {RATED_MW} MW AC",
     f"Maximum cap        : {MAX_TURBINES} turbines = {MAX_TURBINES * RATED_MW:,.0f} MW",
     f"Current fleet      : {CURRENT_TURBINES} turbines = {CURRENT_TURBINES * RATED_MW:,.0f} MW (65% demand target)",
     f"Hours with cf = 0  : {zero_cf_hours}  (wind cannot cover load these hours regardless of fleet size)",

@@ -26,9 +26,9 @@ ROOT = Path(__file__).parent.parent
 OUT = ROOT / "balance" / "2050" / "wind_only"
 OUT.mkdir(parents=True, exist_ok=True)
 
-# Sizing (matches wind_li_analysis.py 2050 scenario)
+# Sizing (matches wind_li_analysis.py 2050 scenario — SG 14-222 DD, 15 MW)
 TARGET_GWH = 38466.7 * 0.65  # 65 % of 2050 annual load projection (≈ 25,003 GWh)
-RATED_KW = 2800.0
+RATED_KW = 15000.0
 
 load = pd.read_csv(ROOT / "load_projections" / "2050" / "total" / "total_load_2050_K.csv")
 load["hour"] = pd.to_datetime(load["hour"])
@@ -91,7 +91,7 @@ ax.set_yticks(range(12))
 ax.set_yticklabels(range(1, 13))
 ax.set_xlabel("Hour of day (local)")
 ax.set_ylabel("Month")
-ax.set_title(f"2050 wind-only deficit (MW) — {n_turbines} x GE 2.8-127, {installed_mw:,.0f} MW")
+ax.set_title(f"2050 wind-only deficit (MW) — {n_turbines} x SG 14-222 DD, {installed_mw:,.0f} MW")
 cbar = fig.colorbar(im, ax=ax)
 cbar.set_label("Deficit MW (+ = shortfall, - = surplus)")
 fig.tight_layout()
@@ -148,7 +148,7 @@ hours_surplus = (hourly["deficit_MW"] < 0).sum()
 with open(OUT / "summary.txt", "w") as f:
     lines = [
         f"Scenario              : 2050 wind-only (target {TARGET_GWH:,.0f} GWh/yr from wind)",
-        f"Wind fleet            : {n_turbines} x GE 2.8-127 = {installed_mw:,.1f} MW AC",
+        f"Wind fleet            : {n_turbines} x SG 14-222 DD = {installed_mw:,.1f} MW AC",
         f"Annual wind CF        : {annual_cf:.4f} ({annual_cf*100:.2f}%)",
         f"",
         f"Annual load           : {load_TWh:,.2f} TWh",

@@ -1,5 +1,5 @@
 """
-Long Island utility-scale wind feasibility — GE 2.8-127, 100 m hub, 2050 scenario.
+Long Island utility-scale wind feasibility — SG 14-222 DD (15 MW), 100 m hub, 2050 scenario.
 
 Data: 9 years of hourly wind speeds at 100 m (site 2325452, 40.24N -73.51W),
 averaged across years to a TMY-style 8760-hour profile.
@@ -29,26 +29,27 @@ DATA_OUT = HERE / "data"
 OUT = HERE / "outputs" / "2050"
 OUT.mkdir(parents=True, exist_ok=True)
 
-# --- Constants / turbine: GE 2.8-127 ------------------------------------------
+# --- Constants / turbine: Siemens Gamesa SG 14-222 DD (15 MW Power Boost) -----
+# Commercially deployed at Moray West, UK (April 2024).
+# Rotor 222 m, direct drive, IEC S (offshore class).
+# Power curve approximated from published turbine class characteristics:
+#   specific power ~387 W/m², rated wind speed ~12 m/s at 1.225 kg/m³.
 RHO = 1.225
-RATED_KW = 2800.0
-ROTOR_D = 127.0
+RATED_KW = 15000.0
+ROTOR_D = 222.0
 ROTOR_R = ROTOR_D / 2
 ROTOR_A = np.pi * ROTOR_R**2
 HUB_H = 100.0
 CUT_IN = 3.0
 CUT_OUT = 25.0
 
-# Power curve digitized from GE/IEC class III public spec (kW vs m/s, 1.225 kg/m^3).
 curve_v = np.array([
-    0.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0,
-    8.5, 9.0, 9.5, 10.0, 10.5, 11.0, 11.5, 12.0, 12.5, 13.0,
-    25.0, 25.01, 30.0,
+    0.0, 2.5, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 10.5,
+    11.0, 11.5, 12.0, 13.0, 25.0, 25.01, 30.0,
 ])
 curve_p = np.array([
-    0, 0, 0, 22, 71, 137, 226, 339, 477, 644, 841, 1071, 1334,
-    1632, 1942, 2244, 2484, 2664, 2773, 2799, 2800, 2800, 2800,
-    2800, 0, 0,
+    0, 0, 0, 280, 950, 2200, 4000, 6200, 8800, 11400, 13000,
+    14200, 14800, 15000, 15000, 15000, 0, 0,
 ], dtype=float)
 
 def turbine_power(v):
@@ -151,7 +152,7 @@ annual_res.to_csv(OUT / "annual_wind_resource.csv", header=["value"])
 summary = {
     "Site": "Long Island, NY (40.24N, -73.51W; site 2325452)",
     "Data window": f"{yr_min}-{yr_max} ({n_years}-year hourly average, 100 m)",
-    "Turbine": "GE 2.8-127 (2.8 MW, 127 m rotor, 100 m hub)",
+    "Turbine": "SG 14-222 DD (15 MW Power Boost, 222 m rotor, 100 m hub)",
     "Target annual demand (GWh)": f"{TARGET_GWH:,.0f}",
     "Number of turbines": n_turbines,
     "Installed capacity (MW)": f"{installed_mw:,.1f}",
@@ -173,7 +174,7 @@ ax.axvline(CUT_IN, color="g", ls="--", alpha=0.5, label=f"cut-in {CUT_IN} m/s")
 ax.axvline(CUT_OUT, color="r", ls="--", alpha=0.5, label=f"cut-out {CUT_OUT} m/s")
 ax.set_xlabel("Hub-height wind speed (m/s)")
 ax.set_ylabel("Turbine power (kW)")
-ax.set_title("GE 2.8-127 power curve (digitized)")
+ax.set_title("SG 14-222 DD power curve (approximated from public spec class)")
 ax.grid(True, alpha=0.3)
 ax.legend()
 fig.tight_layout()
@@ -185,7 +186,7 @@ fig, ax = plt.subplots(figsize=(9, 5))
 ax.bar(months, monthly_energy["e_array_GWh"])
 ax.set_xlabel("Month")
 ax.set_ylabel("Array energy (GWh)")
-ax.set_title(f"Monthly net energy — {n_turbines} x GE 2.8-127 ({installed_mw:,.0f} MW)")
+ax.set_title(f"Monthly net energy — {n_turbines} x SG 14-222 DD ({installed_mw:,.0f} MW)")
 ax.set_xticks(range(1, 13))
 ax.grid(True, alpha=0.3, axis="y")
 fig.tight_layout()
@@ -219,7 +220,7 @@ fig, ax = plt.subplots(figsize=(8, 5))
 ax.plot(diurnal_cf.index, diurnal_cf.values, "-o")
 ax.set_xlabel("Hour of day (local, UTC-5)")
 ax.set_ylabel("Capacity factor")
-ax.set_title(f"Diurnal mean CF — GE 2.8-127 @ 100 m, Long Island ({n_years}-yr avg)")
+ax.set_title(f"Diurnal mean CF — SG 14-222 DD @ 100 m, Long Island ({n_years}-yr avg)")
 ax.set_xticks(range(0, 24, 2))
 ax.grid(True, alpha=0.3)
 ax.set_ylim(0, max(0.6, diurnal_cf.max() * 1.1))
@@ -229,7 +230,7 @@ plt.close(fig)
 
 # --- Console summary ----------------------------------------------------------
 print(f"Site: 2325452 (40.24N, -73.51W), {n_years}-year average ({yr_min}-{yr_max})")
-print(f"Turbine: GE 2.8-127 @ {HUB_H:.0f} m hub")
+print(f"Turbine: SG 14-222 DD (15 MW) @ {HUB_H:.0f} m hub")
 print(f"Wrote {len(out_df)} rows to {out_csv}")
 print()
 print(f"Annual CF: {annual_cf:.4f} ({annual_cf*100:.2f}%)")
@@ -239,6 +240,6 @@ for m, v in monthly_cf.round(4).items():
 print()
 print(f"Target demand:           {TARGET_GWH:,.0f} GWh/yr")
 print(f"Required AC capacity:    {mw_required:,.1f} MW")
-print(f"Number of turbines:      {n_turbines} x 2.8 MW = {installed_mw:,.1f} MW installed")
+print(f"Number of turbines:      {n_turbines} x {RATED_KW/1000:.0f} MW = {installed_mw:,.1f} MW installed")
 print(f"Farm area (5D x 3D):     {total_area_km2:,.2f} km^2")
 print(f"Outputs written to:      {OUT}")
