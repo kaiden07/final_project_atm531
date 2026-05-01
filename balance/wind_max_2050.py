@@ -133,7 +133,7 @@ lines = [
     "======================================================",
     f"Turbine model      : SG 14-222 DD (Power Boost), {RATED_MW} MW AC",
     f"Maximum cap        : {MAX_TURBINES} turbines = {MAX_TURBINES * RATED_MW:,.0f} MW",
-    f"Current fleet      : {CURRENT_TURBINES} turbines = {CURRENT_TURBINES * RATED_MW:,.0f} MW (65% demand target)",
+    f"Current fleet      : {CURRENT_TURBINES} turbines = {CURRENT_TURBINES * RATED_MW:,.0f} MW (76.1% demand target)",
     f"Hours with cf = 0  : {zero_cf_hours}  (wind cannot cover load these hours regardless of fleet size)",
     "",
     "Threshold results:",

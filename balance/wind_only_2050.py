@@ -27,7 +27,7 @@ OUT = ROOT / "balance" / "2050" / "wind_only"
 OUT.mkdir(parents=True, exist_ok=True)
 
 # Sizing (matches wind_li_analysis.py 2050 scenario — SG 14-222 DD, 15 MW)
-TARGET_GWH = 38466.7 * 0.65  # 65 % of 2050 annual load projection (≈ 25,003 GWh)
+TARGET_GWH = 38466.7 * 0.761  # 76.1 % of 2050 annual load (closes wind+solar gap to 100%)
 RATED_KW = 15000.0
 
 load = pd.read_csv(ROOT / "load_projections" / "2050" / "total" / "total_load_2050_K.csv")

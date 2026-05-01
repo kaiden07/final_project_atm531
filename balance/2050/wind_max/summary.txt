@@ -2,7 +2,7 @@ Minimum turbines to zero deficit — threshold analysis
 ======================================================
 Turbine model      : SG 14-222 DD (Power Boost), 15.0 MW AC
 Maximum cap        : 5000 turbines = 75,000 MW
-Current fleet      : 352 turbines = 5,280 MW (65% demand target)
+Current fleet      : 412 turbines = 6,180 MW (76.1% demand target)
 Hours with cf = 0  : 1  (wind cannot cover load these hours regardless of fleet size)
 
 Threshold results:

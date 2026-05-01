@@ -2,13 +2,13 @@ Scenario              : 2050 wind + solar
 Solar farm            : 12,500,000 panels
 
 Annual load           : 38.47 TWh
-Annual wind energy    : 25.05 TWh (65.1% of load)
+Annual wind energy    : 29.32 TWh (76.2% of load)
 Annual solar energy   : 9.19 TWh (23.9% of load)
-Combined renewable    : 34.24 TWh (89.0% of load)
+Combined renewable    : 38.51 TWh (100.1% of load)
 
-Energy deficit (sum>0): 9.28 TWh
-Energy surplus (sum<0): 5.06 TWh
-Hours with deficit    : 5,331 / 8760 (60.9%)
-Hours with surplus    : 3,429 / 8760 (39.1%)
-Peak hourly deficit   : 6,273 MW
-Peak hourly surplus   : 6,537 MW
+Energy deficit (sum>0): 7.34 TWh
+Energy surplus (sum<0): 7.38 TWh
+Hours with deficit    : 4,449 / 8760 (50.8%)
+Hours with surplus    : 4,311 / 8760 (49.2%)
+Peak hourly deficit   : 6,174 MW
+Peak hourly surplus   : 7,437 MW
