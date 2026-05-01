@@ -7,6 +7,8 @@ generation ≈ 6,015 MW, 9.19 TWh/yr). Annual load is 38.47 TWh (2050 projection
 |---------------------------------|----------------------------|----------------------------|
 | **Wind installed capacity**     | 412 × 15 MW = 6,180 MW     | 778 × 15 MW = 11,670 MW    |
 | **Solar installed**             | 12,500,000 panels          | 12,500,000 panels          |
+| Wind farm area (5D × 3D)        | 304.7 km²                  | 575.4 km²                  |
+| Solar farm area (GCR ≈ 0.40)    | 51.0 km²                   | 51.0 km²                   |
 | Wind annual generation          | 29.32 TWh (76.2% of load)  | 55.36 TWh (143.9% of load) |
 | Solar annual generation         | 9.19 TWh (23.9% of load)   | 9.19 TWh (23.9% of load)   |
 | Combined renewable generation   | 38.51 TWh (100.1% of load) | 64.55 TWh (167.8% of load) |
