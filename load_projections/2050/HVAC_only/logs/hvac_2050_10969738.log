@@ -1,0 +1,6 @@
+[2026-04-28 20:15:18 UTC] Host: uagc24-02.its.albany.edu
+[2026-04-28 20:15:18 UTC] SLURM_TMPDIR=unset
+[2026-04-28 20:15:18 UTC] Running: /network/rit/lab/CUERG/kaiden/miniconda3/envs/WRF_New/bin/python /network/rit/lab/CUERG/kaiden/531_final_project/load_projections/2050/compare_hvac_baf.py --years 2050 --domain d02 --zones K --output-dir /network/rit/lab/CUERG/kaiden/531_final_project/load_projections/2050/HVAC_only
+
+
+[2026-04-28 20:15:35 UTC] Done (exit 0).

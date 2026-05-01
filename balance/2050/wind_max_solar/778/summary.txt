@@ -1,0 +1,15 @@
+Scenario              : 2050 wind-max + solar (wind = 778 turbines)
+Wind fleet            : 778 x SG 14-222 DD = 11,670 MW AC
+Solar farm            : 12,500,000 panels (held constant)
+
+Annual load           : 38.47 TWh
+Annual wind energy    : 55.36 TWh (143.9% of load)
+Annual solar energy   : 9.19 TWh (23.9% of load)
+Combined renewable    : 64.55 TWh (167.8% of load)
+
+Energy deficit (sum>0): 2.26 TWh
+Energy surplus (sum<0): 28.35 TWh
+Hours with deficit    : 1,643 / 8760 (18.8%)
+Hours with surplus    : 7,117 / 8760 (81.2%)
+Peak hourly deficit   : 5,575 MW
+Peak hourly surplus   : 12,927 MW
